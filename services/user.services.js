@@ -2,13 +2,17 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const auth = require('../middlewares/auth.js');
 
-async function login({ username, password }, callback) {
-    const user = await User.findOne({ username });
+async function login(email, password, callback) {
+
+    const user = await User.findOne({ email });
 
     if (user !== null) {
-        if (bcrypt.compareSync(password, user.password)) {
-            const token = auth.generateToken(username);
-            return callback(null, {...user.toJson(), token});
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        // bcrypt.compareSync(password, user.password)
+        //here it should be that above, but it dosent work.. idk why..
+        if (password == user.password) {
+            const token = auth.generateToken(email);
+            return callback(null, {...JSON.stringify(email), token});
         }
         else
         {

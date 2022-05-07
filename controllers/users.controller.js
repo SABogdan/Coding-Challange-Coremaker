@@ -2,19 +2,21 @@ const bycryptjs = require('bcryptjs');
 const userService = require('../services/user.services');
 
 exports.register = (req, res, next) => {
-    const { password } = req.body;
+
+    const { username, password, email } = req.body;
     const salt = bycryptjs.genSaltSync(10);
 
-    req.body.password = bycryptjs.hash(password, salt);
+    req.body.password = bycryptjs.hash(password, salt)
+    .then(
+        userService.register(req.body, (err, result) => {
+            if(err) return next(err);
 
-    userService.register(req.body, (err, result) => {
-        if(err) return next(err);
-
-        return res.status(200).send({
-            message: "Success",
-            data: result,
-        });
-    });
+            return res.status(200).send({
+                message: "Success",
+                data: result,
+            });
+        })
+    );
 }
 
 exports.login = (req, res, next) => {

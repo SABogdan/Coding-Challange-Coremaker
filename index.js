@@ -23,16 +23,19 @@ app.use(auth.authenticateToken.unless({
     path: [
         { url: "/", methods: ["GET"] },
         { url: "/users/login", methods: ["POST"] },
-        { url: "/signup", methods: ["POST"] },
+        { url: "/users/register", methods: ["POST"] },
     ],
 }));
 
-app.use(express.json());
+// for some reason this is not working
+// app.use(express.json());
+
+app.use(express.urlencoded());
 
 app.use("/users", require("./routes/user.routes"));
 
 app.use(errors.errorHandler);
 
-app.listen(process.env.port || 4000, () => {
-    console.log("Server is running on port 4000");
+app.listen(process.env.port || 8080, () => {
+    console.log("Server is running on port 8080");
 });
