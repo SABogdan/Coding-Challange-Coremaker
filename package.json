@@ -1,0 +1,27 @@
+{
+  "name": "coding-challange-coremaker",
+  "version": "1.0.0",
+  "description": "jr dev coding challange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SABogdan/Coding-Challange-Coremaker.git"
+  },
+  "author": "Bogdan S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SABogdan/Coding-Challange-Coremaker/issues"
+  },
+  "homepage": "https://github.com/SABogdan/Coding-Challange-Coremaker#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.1",
+    "express-unless": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.2",
+    "mongoose-unique-validator": "^3.0.0"
+  }
+}
